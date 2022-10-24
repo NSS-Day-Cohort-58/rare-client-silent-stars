@@ -42,6 +42,7 @@ export const Posts = ({ searchTermState }) => {
         },
         []
     )
+    
 
     const refresh = () => {
         return window.location.reload(false);
