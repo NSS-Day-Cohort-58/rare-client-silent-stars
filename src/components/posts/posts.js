@@ -11,7 +11,26 @@ export const Posts = ({ searchTermState }) => {
     const [selected, setSelected] = useState(false)
 
 
+    useEffect(
+        () => {
+            const searchedPosts = posts.filter(post => { return post.title.toLowerCase().startsWith(searchTermState.toLowerCase()) })
 
+            setFilteredPosts(searchedPosts)
+        },
+        [searchTermState]
+    )
+
+    useEffect(
+        () => {
+
+            fetch(`http://localhost:8088/posts`)
+                .then(response => response.json())
+                .then((postsArray) => {
+                    setFilteredPosts(postsArray)
+                })
+        },
+        []
+    )
     useEffect(
         () => {
 
@@ -36,7 +55,7 @@ export const Posts = ({ searchTermState }) => {
         <article>
             {
 
-                posts.map(
+                filteredPosts.map(
                     (post) => <Post
                         userId={post.userId}
                         category_id={post.category_id}
