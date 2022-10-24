@@ -1,9 +1,15 @@
-export const User = ({ username, first_name, last_name, email}) => {
+import "./users.css"
 
+export const User = ({ username, firstName, lastName, email  }) => {
+    
     return <>
-        <div>Username: {username}</div>
-        <div>First Name: {first_name}</div>
-        <div>Last Name: {last_name} </div>
+        <section className="userbox">
+        <article className="users">
+        <div>User: {username}</div>
+        <div>First Name: {firstName}</div>
+        <div>Last Name: {lastName}</div>
         <div>Email: {email}</div>
+        </article>
+        </section>
     </>
 }
