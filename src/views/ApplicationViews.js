@@ -6,6 +6,7 @@ import { Category } from "../components/categories/Category"
 import { PostContainer } from "../components/posts/postContainer"
 import { Authorized } from "./Authorized"
 import { CategoryForm } from "../components/categories/CategoryForm"
+import { TagForm } from "../components/tags/tagForm"
 
 export const ApplicationViews = ({ token, setToken }) => {
   return <>
@@ -16,6 +17,7 @@ export const ApplicationViews = ({ token, setToken }) => {
       <Route path="/create-category" element={<CategoryForm setToken={setToken} />} />
       <Route path="/posts" element={<PostContainer setToken={setToken} />} />
       <Route path="/tags" element={<Tags setToken={setToken} />} />
+      <Route path="/create-tag" element={<TagForm setToken={setToken} />} />
       <Route element={<Authorized token={token} />}>
         {/* Add Routes here */}
 
