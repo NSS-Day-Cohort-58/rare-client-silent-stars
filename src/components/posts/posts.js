@@ -52,13 +52,15 @@ export const Posts = ({ searchTermState }) => {
 
         <h2>All Posts</h2>
 
+
         <article>
             {
 
                 filteredPosts.map(
                     (post) => <Post
+                        id={post.id}
                         userId={post.userId}
-                        category_id={post.category_id}
+                        category={post.category.label}
                         title={post.title}
                         publication_date={post.publication_date}
                         image_url={post.image_url}

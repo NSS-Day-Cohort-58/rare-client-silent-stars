@@ -1,10 +1,13 @@
-export const Post = ({ AuthorFirstName, category_id, title, publication_date, image_url, content, AuthorLastName }) => {
+import { Link } from "react-router-dom"
+
+export const Post = ({ AuthorFirstName, category, title, publication_date, AuthorLastName, id }) => {
 
     return <>
-        <h2>title: {title}</h2>
-        <div>{publication_date}</div>
-        <div className="image"> <img src={image_url} /></div>
-        <div>{content}</div>
-        <div>Author: {AuthorFirstName} {AuthorLastName}</div>
+
+        <section className="post">
+            <Link to={`/posts/${id}`} >{title}</Link>
+            <div>Author: {AuthorFirstName} {AuthorLastName}</div>
+            <div>{category}</div>
+        </section>
     </>
 }
