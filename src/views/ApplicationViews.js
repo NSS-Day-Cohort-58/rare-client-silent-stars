@@ -18,7 +18,6 @@ export const ApplicationViews = ({ token, setToken }) => {
       <Route path="/categories" element={<Category setToken={setToken} />} />
       <Route path="/create-category" element={<CategoryForm setToken={setToken} />} />
       <Route path="/posts" element={<PostContainer setToken={setToken} />} />
-
       <Route path="posts/:postId" element={<PostDetails />} />
       <Route path="/tags" element={<Tags setToken={setToken} />} />
       <Route path="/create-tag" element={<TagForm setToken={setToken} />} />
