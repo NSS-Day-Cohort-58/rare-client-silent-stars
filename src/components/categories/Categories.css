@@ -1,0 +1,34 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;1,200;1,300;1,400;1,500&display=swap");
+
+
+.categories {
+    font-family: "Nunito", sans-serif;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 40%;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    border-radius: 10px;
+    margin-bottom: 35px;
+}
+
+.categoryForm {
+    font-family: "Nunito", sans-serif;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 40%;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    border-radius: 10px;
+    margin-bottom: 35px;
+}
+
+.categoryList.btn.btn-dark,
+.submit.btn.btn-dark{
+    font-family: "Nunito", sans-serif;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5rem;
+    margin-top: 2.5rem;
+}
