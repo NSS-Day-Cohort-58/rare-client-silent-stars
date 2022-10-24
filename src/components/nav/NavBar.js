@@ -55,13 +55,12 @@ export const NavBar = ({ token, setToken }) => {
                     <Link to="/create-post" className="button is-link">New Post</Link>
                     <Link to="/create-tag" className="button is-link">Tag List</Link>
                     <Link to="/tags" className="button is-link">Tag Management</Link>
-                    <Link to="/create-category" className="button is-link">Category List</Link>
-                    <Link to="/categories" className="button is-link">Category Management</Link>
+                    <Link to="/categories" className="button is-link">Category List</Link>
+                    <Link to="/create-category" className="button is-link">Category Management</Link>
                     <Link to="/my-posts" className="button is-link">My Posts</Link>
                     <Link to="/user-list" className="button is-link">User Management</Link>
                     <Link to="/register" className="button is-link">Register</Link>
                     <Link to="/login" className="button is-outlined">Login</Link>
-                    <Link to="/posts" className="button is-link">Posts</Link>
                   </>
               }
             </div>
