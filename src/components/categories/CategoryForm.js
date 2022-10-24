@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Container, Form } from "react-bootstrap";
+import { Button, Container, Col, Form } from "react-bootstrap";
 
 export const CategoryForm = () => {
 
@@ -30,7 +30,7 @@ export const CategoryForm = () => {
     })
         .then((response) => response.json())
         .then(() => {
-            navigate("/categories");
+            navigate("/create-category");
       });
     };
 
@@ -38,13 +38,13 @@ export const CategoryForm = () => {
         <>
         <Container>
             <Form>
-                <Col>
+                <Col className="">
                     <Form.Group controlId="formCategory">
                         <Form.Label>
                             Create Your Own Category!
                         </Form.Label>
                         <Form.Control type="text" placeholder="Create Category Label"/>
-                        <Button variant="dark" type="submit" onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}>Create</Button>
+                        <Button variant="dark" type="submit" onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}>Submit</Button>
                     </Form.Group>
                 </Col>
             </Form>
@@ -56,4 +56,3 @@ export const CategoryForm = () => {
     }
 
 
-}
