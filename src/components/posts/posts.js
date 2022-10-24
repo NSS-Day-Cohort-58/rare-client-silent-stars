@@ -26,6 +26,9 @@ export const Posts = ({ searchTermState }) => {
             fetch(`http://localhost:8088/posts`)
                 .then(response => response.json())
                 .then((postsArray) => {
+                    postsArray.sort(function (a, b) {
+                        return new Date(b.publication_date) - new Date(a.publication_date);
+                    });
                     setFilteredPosts(postsArray)
                 })
         },
@@ -43,9 +46,6 @@ export const Posts = ({ searchTermState }) => {
         []
     )
 
-    const refresh = () => {
-        return window.location.reload(false);
-    }
 
 
     return <>
@@ -67,6 +67,7 @@ export const Posts = ({ searchTermState }) => {
                         content={post.content}
                         AuthorFirstName={post.user.first_name}
                         AuthorLastName={post.user.last_name}
+                        key={`post--${post.id}`}
 
 
                     />
