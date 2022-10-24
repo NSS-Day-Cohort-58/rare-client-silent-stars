@@ -63,6 +63,8 @@ export const Posts = ({ searchTermState }) => {
                         publication_date={post.publication_date}
                         image_url={post.image_url}
                         content={post.content}
+                        AuthorFirstName={post.user.first_name}
+                        AuthorLastName={post.user.last_name}
 
 
                     />
