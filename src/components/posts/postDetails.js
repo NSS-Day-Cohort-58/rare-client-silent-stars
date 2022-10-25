@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom"
 
 export const PostDetails = () => {
     const navigate = useNavigate()
-    const [post, setPosts] = useState([])
+    const [post, setPosts] = useState({})
     const { postId } = useParams()
     useEffect(
         () => {
@@ -24,7 +24,7 @@ export const PostDetails = () => {
             <h2>{post.title}</h2>
             <div>Created by: {post?.user?.first_name} {post?.user?.last_name}</div>
             <div>Category: {post?.category?.label} </div>
-            <div> Publication date: {post.publication_date}</div>
+            <div>Publication date: {post.publication_date}</div>
             <div>Content: {post.content} </div>
         </article>
     </>

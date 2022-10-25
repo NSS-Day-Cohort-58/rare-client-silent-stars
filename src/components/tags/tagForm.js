@@ -61,7 +61,7 @@ export const TagForm = () => {
                         <Form.Label>
                             Create Your Own Tag!
                         </Form.Label>
-                        <Form.Control type="text" placeholder="Create Tag Label"/>
+                        <Form.Control type="text" placeholder="Create Tag Label" />
                         <Button variant="dark" type="submit" 
                         onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}>Submit</Button>
                     </Form.Group>
