@@ -11,6 +11,7 @@ import { Users } from "../components/users/users"
 import { PostDetails } from "../components/posts/postDetails"
 import { TagForm } from "../components/tags/tagForm"
 import { CategoryList } from "../components/categories/CategoryList"
+import { MyPosts } from "../components/posts/myPosts"
 
 
 export const ApplicationViews = ({ token, setToken }) => {
@@ -18,7 +19,7 @@ export const ApplicationViews = ({ token, setToken }) => {
     <Routes>
       <Route path="/login" element={<Login setToken={setToken} />} />
       <Route path="/register" element={<Register setToken={setToken} />} />
-
+      <Route path="/my-posts" element={<MyPosts setToken={setToken} />} />
       <Route path="/create-category" element={<CategoryForm setToken={setToken} />} />
       <Route path="/posts" element={<PostContainer setToken={setToken} />} />
       <Route path="/categories" element={<CategoryList setToken={setToken} />} />
