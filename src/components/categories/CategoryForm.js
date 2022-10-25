@@ -7,17 +7,17 @@ import "./Categories.css"
 export const CategoryForm = () => {
     const [categories, setCatagories] = useState([])
     const [category, update] = useState({
-        id: 0,
+        id: (0),
         label: "",
     })
 
     useEffect(() => {
         fetch(`http://localhost:8088/categories`)
-          .then((response) => response.json())
-          .then((categoryArray) => {
-            setCatagories(categoryArray);
-          });
-      }, []);
+            .then((response) => response.json())
+            .then((categoryArray) => {
+                setCatagories(categoryArray);
+            });
+    }, []);
 
     const navigate = useNavigate();
 
@@ -49,11 +49,11 @@ export const CategoryForm = () => {
             <Container>
                 <Col className="CategoryListLeft">
                     <h2>Categories</h2>
-                {
-                categories.map(category => {
-                  return <ul className="categories">{category.label}</ul>
-                })
-            }
+                    {
+                        categories.map(category => {
+                            return <ul className="categories">{category.label}</ul>
+                        })
+                    }
                 </Col>
 
 
@@ -63,21 +63,21 @@ export const CategoryForm = () => {
                             <Form.Label>
                                 Create Your Own Category!
                             </Form.Label>
-                            <Form.Control type="text" placeholder="Create Category Label" value={category.label} onChange={(evt) => {
+                            <Form.Control type="text" placeholder="Create Category Label" onChange={(evt)=>{
                                 const copy = { ...category };
-                                copy.category = evt.target.value;
+                                copy.label = evt.target.value;
                                 update(copy)
-                            }} />
+                            }}  />
                             <Button variant="dark" type="submit" className="submit" onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}>Submit</Button>
                         </Form.Group>
                     </Col>
                 </Form>
 
-        </Container >
+            </Container >
         </>
 
     )
 
-    }
+}
 
 
