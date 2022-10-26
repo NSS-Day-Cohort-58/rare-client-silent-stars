@@ -48,6 +48,7 @@ export const Post = ({ AuthorFirstName, category, title, publication_date, Autho
             <Link to={`/posts/${id}`} >{title}</Link>
             <div>Author: {AuthorFirstName} {AuthorLastName}</div>
             <div>{category}</div>
+            <Button size="sm" variant="info" onClick={() => navigate(`/posts/${id}/add-comment`)} >Add Comment</Button>
             {
                 location.pathname === "/my-posts"
                     ? <>{DeleteButton()}
