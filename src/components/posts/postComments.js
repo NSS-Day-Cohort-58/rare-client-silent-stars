@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react"
 import { Button } from "react-bootstrap"
-import { useNavigate, useParams } from "react-router-dom"
+import { useLocation, useNavigate, useParams } from "react-router-dom"
 
 export const PostComments = () => {
     const navigate = useNavigate()
     const [comments, setComments] = useState([])
     const [post, setPosts] = useState({})
-
-    const { postId } = useParams()
-
     const localFireHawksUser = localStorage.getItem("auth_token")
-    const fireHawksUserObject = JSON.parse(localFireHawksUser)
+    const FireHawksUserObject = JSON.parse(localFireHawksUser)
+    const location = useLocation()
+    const { postId } = useParams()
 
     useEffect(
         () => {
@@ -34,8 +33,23 @@ export const PostComments = () => {
         },
         [postId]
     )
-
     
+    const DeleteButton = (id) => {
+        return <Button
+            size="sm"
+            variant="danger"
+            onClick={
+                () => {
+                    return fetch(`http://localhost:8088/comments/${id}`, {
+                        method: "DELETE",
+                    })
+                        .then(() => {(window.location.reload(false))})
+
+                }
+            }
+        >Delete </Button>
+    }
+
 
 
     return <>
@@ -45,6 +59,11 @@ export const PostComments = () => {
 
                     <h2>On post: {post.title}</h2>
                     <div>You have a comment: {comment.content}</div>
+                    {
+                        FireHawksUserObject === comment.author_id
+                            ? DeleteButton(comment.id)
+                            : ""
+                    }
 
 
                 </article>
