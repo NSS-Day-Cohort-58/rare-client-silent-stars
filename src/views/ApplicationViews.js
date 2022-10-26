@@ -17,6 +17,7 @@ import { PostEdits } from "../components/posts/editMyPost"
 import { UserDetails } from "../components/users/userDetails"
 import { PostForm } from "../components/posts/createPost"
 import { MySubscriptions } from "../components/subscriptions/mySubscriptions"
+import { PostComments } from "../components/posts/postComments"
 
 
 
@@ -31,11 +32,9 @@ export const ApplicationViews = ({ token, setToken }) => {
       <Route path="/posts" element={<PostContainer setToken={setToken} />} />
       <Route path="/categories" element={<CategoryList setToken={setToken} />} />
       <Route path="posts/:postId" element={<PostDetails />} />
-
+      <Route path="posts/:postId/comment" element={<PostComments />} />
       <Route path="my-posts/:postId/edit" element={<PostEdits />} />
-
       <Route path="users/:userId" element={<UserDetails />} />
-
       <Route path="/tags" element={<Tags setToken={setToken} />} />
       <Route path="/user-list" element={<Users setToken={setToken} />} />
       <Route path="/create-tag" element={<TagForm setToken={setToken} />} />
