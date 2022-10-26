@@ -15,6 +15,7 @@ import { MyPosts } from "../components/posts/myPosts"
 
 import { PostEdits } from "../components/posts/editMyPost"
 import { UserDetails } from "../components/users/userDetails"
+import { PostForm } from "../components/posts/createPost"
 
 
 
@@ -36,6 +37,7 @@ export const ApplicationViews = ({ token, setToken }) => {
       <Route path="/tags" element={<Tags setToken={setToken} />} />
       <Route path="/user-list" element={<Users setToken={setToken} />} />
       <Route path="/create-tag" element={<TagForm setToken={setToken} />} />
+      <Route path="/create-post" element={<PostForm setToken={setToken} />} />
       <Route element={<Authorized token={token} />}>
         {/* Add Routes here */}
 
