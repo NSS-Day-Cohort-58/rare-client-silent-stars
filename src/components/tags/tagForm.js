@@ -48,8 +48,8 @@ export const TagForm = () => {
 
     return (
         <>
-        <h2>Tags</h2>
-        <article>
+        <h2 className="tagTitle">Tags</h2>
+        <article id="tags">
             {
                 tags.map(tag => {
                     return <ul>{tag.label}</ul>})

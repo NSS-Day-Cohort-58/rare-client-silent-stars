@@ -8,6 +8,10 @@ export const PostComments = () => {
     const [post, setPosts] = useState({})
 
     const { postId } = useParams()
+
+    const localFireHawksUser = localStorage.getItem("auth_token")
+    const fireHawksUserObject = JSON.parse(localFireHawksUser)
+
     useEffect(
         () => {
 
@@ -31,6 +35,7 @@ export const PostComments = () => {
         [postId]
     )
 
+    
 
 
     return <>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-
+import "./posts.css"
 
 import { Post } from "./post";
 export const Posts = ({ searchTermState }) => {
@@ -119,7 +119,8 @@ export const Posts = ({ searchTermState }) => {
 
     return <>
 
-        <h2>All Posts</h2>
+        <h2 className="allPosts">All Posts</h2>
+        <div className="dropdownMenus">
         <select id="description" value={category.id}
             onChange={(evt) => {
                 const copy = { ...category }
@@ -162,9 +163,10 @@ export const Posts = ({ searchTermState }) => {
                 })
             }
         </select>
+        </div>
         <article>
+            <div className="postList">
             {
-
                 filteredPosts.map(
                     (post) => <Post
                         id={post.id}
@@ -180,9 +182,9 @@ export const Posts = ({ searchTermState }) => {
 
 
                     />
-
-                )
-            }
+                    )
+                }
+                </div>
 
 
         </article>

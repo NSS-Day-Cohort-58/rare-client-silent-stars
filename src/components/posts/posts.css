@@ -1,0 +1,18 @@
+.allPosts{
+    font-size: 262%;
+    font-weight: bolder;
+    padding: 1rem 0rem 1rem 0rem;
+    text-align: center;
+}
+.dropdownMenus{
+    padding: 0rem 0rem 8rem 0rem;
+    text-align: center;
+}
+.postList{
+    display: grid;
+    grid-template-columns: 46rem 49rem;
+    text-align: justify;
+    justify-items: center;
+    gap: 4px;
+
+}
