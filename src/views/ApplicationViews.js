@@ -12,12 +12,18 @@ import { PostDetails } from "../components/posts/postDetails"
 import { TagForm } from "../components/tags/tagForm"
 import { CategoryList } from "../components/categories/CategoryList"
 import { MyPosts } from "../components/posts/myPosts"
+
+import { PostEdits } from "../components/posts/editMyPost"
 import { UserDetails } from "../components/users/userDetails"
+import { PostForm } from "../components/posts/createPost"
+import { MySubscriptions } from "../components/subscriptions/mySubscriptions"
+
 
 
 export const ApplicationViews = ({ token, setToken }) => {
   return <>
     <Routes>
+      <Route path="/" element={<MySubscriptions setToken={setToken} />} />
       <Route path="/login" element={<Login setToken={setToken} />} />
       <Route path="/register" element={<Register setToken={setToken} />} />
       <Route path="/my-posts" element={<MyPosts setToken={setToken} />} />
@@ -25,10 +31,15 @@ export const ApplicationViews = ({ token, setToken }) => {
       <Route path="/posts" element={<PostContainer setToken={setToken} />} />
       <Route path="/categories" element={<CategoryList setToken={setToken} />} />
       <Route path="posts/:postId" element={<PostDetails />} />
+
+      <Route path="my-posts/:postId/edit" element={<PostEdits />} />
+
       <Route path="users/:userId" element={<UserDetails />} />
+
       <Route path="/tags" element={<Tags setToken={setToken} />} />
       <Route path="/user-list" element={<Users setToken={setToken} />} />
       <Route path="/create-tag" element={<TagForm setToken={setToken} />} />
+      <Route path="/create-post" element={<PostForm setToken={setToken} />} />
       <Route element={<Authorized token={token} />}>
         {/* Add Routes here */}
 
