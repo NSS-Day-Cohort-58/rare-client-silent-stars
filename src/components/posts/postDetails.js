@@ -26,6 +26,7 @@ export const PostDetails = () => {
             <div>Category: {post?.category?.label} </div>
             <div>Publication date: {post.publication_date}</div>
             <div>Content: {post.content} </div>
+            <Button size="sm" variant="primary" onClick={() => navigate(`/posts`)} >All posts</Button>
         </article>
     </>
 }
