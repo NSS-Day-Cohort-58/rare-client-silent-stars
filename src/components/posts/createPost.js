@@ -94,7 +94,7 @@ export const PostForm = () => {
         .then(response => response.json())
         .then(parsedResponse => {
             postTagsToSendToAPI.post_id = parsedResponse.id
-            return fetch(`http://localhot:8088/postTags`,{
+            fetch(`http://localhost:8088/postTags`,{
                 method: "POST",
                 headers: {
                     "Content-type": "application/json"
