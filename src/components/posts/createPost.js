@@ -14,14 +14,14 @@ export const PostForm = () => {
     })
     const [postTag, updatePostTag] = useState({
         post_id: 0,
-        tag_id:0
+        tag_id: 0
     })
     const [tags, setTags] = useState([])
     const [categories, setCategories] = useState([])
-    const[categoryId, setCategoryId] = useState(0)
-    
+    const [categoryId, setCategoryId] = useState(0)
+    const [chosenTags, setChosenTags] = useState(new Set())
     const newDate = new Date()
-    const month = newDate.getUTCMonth() +1
+    const month = newDate.getUTCMonth() + 1
     const date = newDate.getUTCDate()
     const year = newDate.getUTCFullYear()
     const today = year + "-" + month + "-" + date
@@ -45,20 +45,20 @@ export const PostForm = () => {
 
     const getNewPost = () => {
         getPosts()
-            .then((newPostArray) =>{
+            .then((newPostArray) => {
                 updateNewPost(newPostArray)
             })
-            .then (navigate('/posts'))
+            .then(navigate('/posts'))
     }
 
-    useEffect(() =>{
+    useEffect(() => {
         getCategories()
-            .then((categoriesArray) =>{
+            .then((categoriesArray) => {
                 setCategories(categoriesArray)
             })
     }, []
     )
-    
+
     useEffect(() => {
         getTags()
             .then((tagsArray) => {
@@ -66,6 +66,23 @@ export const PostForm = () => {
             })
     }, []
     )
+    const TagPost = (parsedResponse) => {
+        chosenTags.forEach(tag => {
+            const TagToAPI = {
+                post_id: parsedResponse.id,
+                tag_id: tag
+            }
+            fetch(`http://localhost:8088/postTags`, {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json"
+                },
+                body: JSON.stringify(TagToAPI)
+            })
+                .then(response => response.json())
+        }
+        )
+    }
 
     const handleSaveButtonClick = (event) => {
         event.preventDefault()
@@ -79,11 +96,6 @@ export const PostForm = () => {
             approved: false
         }
 
-        const postTagsToSendToAPI = {
-            post_id: 0,
-            tag_id: postTag.tag_id
-        }
-
         fetch(`http://localhost:8088/posts`, {
             method: "POST",
             headers: {
@@ -91,131 +103,130 @@ export const PostForm = () => {
             },
             body: JSON.stringify(postToSendToAPI)
         })
-        .then(response => response.json())
-        .then(parsedResponse => {
-            postTagsToSendToAPI.post_id = parsedResponse.id
-            fetch(`http://localhost:8088/postTags`,{
-                method: "POST",
-                headers: {
-                    "Content-type": "application/json"
-                },
-                body: JSON.stringify(postTagsToSendToAPI)
+            .then(response => response.json())
+            .then(parsedResponse => {
+                TagPost(parsedResponse)
             })
-                .then(response => response.json())
-                .then(() =>{
-                    getNewPost()
-                })
-        
+            .then(() => {
+                getNewPost()
             })
+
+
     }
 
     return (
         <form className="postForm">
             <h2 className="postForm__title"><u>Create A Post</u></h2>
             <div className="wholePostForm">
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="title"><b>Title:</b></label>
-                    <input
-                        required autoFocus
-                        type="text"
-                        className="postTitle"
-                        placeholder="Post Title"
-                        value={newPost.title}
-                        onChange={
-                            (evt) => {
-                                const copy = { ...newPost }
-                                copy.title = evt.target.value
-                                updateNewPost(copy)
-                            }
+                <fieldset>
+                    <div className="form-group">
+                        <label htmlFor="title"><b>Title:</b></label>
+                        <input
+                            required autoFocus
+                            type="text"
+                            className="postTitle"
+                            placeholder="Post Title"
+                            value={newPost.title}
+                            onChange={
+                                (evt) => {
+                                    const copy = { ...newPost }
+                                    copy.title = evt.target.value
+                                    updateNewPost(copy)
+                                }
 
-                        } />
-                </div>
-            </fieldset> 
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="image"><b>Image:</b></label>
-                    <input
-                        required autoFocus
-                        type="text"
-                        className="postImage"
-                        placeholder="Image"
-                        value={newPost.image_url}
-                        onChange={
-                            (evt) => {
-                                const copy = { ...newPost }
-                                copy.image_url = evt.target.value
-                                updateNewPost(copy)
-                            }
+                            } />
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div className="form-group">
+                        <label htmlFor="image"><b>Image:</b></label>
+                        <input
+                            required autoFocus
+                            type="text"
+                            className="postImage"
+                            placeholder="Image"
+                            value={newPost.image_url}
+                            onChange={
+                                (evt) => {
+                                    const copy = { ...newPost }
+                                    copy.image_url = evt.target.value
+                                    updateNewPost(copy)
+                                }
 
-                        } />
-                </div>
-            </fieldset>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="content"><b>Content:</b></label>
-                    <input
-                        required autoFocus
-                        type="textarea"
-                        className="postContent"
-                        placeholder="Content"
-                        value={newPost.content}
-                        onChange={
-                            (evt) => {
-                                const copy = { ...newPost }
-                                copy.content = evt.target.value
-                                updateNewPost(copy)
-                            }
+                            } />
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div className="form-group">
+                        <label htmlFor="content"><b>Content:</b></label>
+                        <input
+                            required autoFocus
+                            type="textarea"
+                            className="postContent"
+                            placeholder="Content"
+                            value={newPost.content}
+                            onChange={
+                                (evt) => {
+                                    const copy = { ...newPost }
+                                    copy.content = evt.target.value
+                                    updateNewPost(copy)
+                                }
 
-                        } />
-                </div>
-            </fieldset> 
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="category"><b>Category:  </b></label>
-                    <select className="dropDown" 
-                        onChange={(evt) => {
-                            setCategoryId(parseInt(evt.target.value))
-                        }}
-                    >
-                        <option value={0}><b>Select Category</b></option>
+                            } />
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div className="form-group">
+                        <label htmlFor="category"><b>Category:  </b></label>
+                        <select className="dropDown"
+                            onChange={(evt) => {
+                                setCategoryId(parseInt(evt.target.value))
+                            }}
+                        >
+                            <option value={0}><b>Select Category</b></option>
+                            {
+                                categories.map(categorie => {
+                                    return <option value={categorie.id}><b>{categorie.label}</b></option>
+                                })
+                            }
+                        </select>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <h2 className="tagsTitle"><b>Choose Tags: </b></h2>
+                    <div className="formGroup">
                         {
-                            categories.map(categorie => {
-                                return <option value={categorie.id}><b>{categorie.label}</b></option>
+                            tags.map((tag) => {
+                                return <>
+                                    <label htmlFor="addTags" className="tagLabel">{tag.label}</label>
+                                    <input
+                                        type="checkbox"
+                                        className="addTags"
+                                        value={false}
+                                        onChange={(evt) => {
+
+                                            const copy = new Set(chosenTags)
+                                            if (copy.has(tag.id)) {
+                                                copy.delete(tag.id)
+                                            }
+                                            else {
+                                                copy.add(tag.id)
+                                            }
+
+                                            setChosenTags(copy)
+
+                                        }}
+                                    />
+                                </>
                             })
                         }
-                    </select>
-                </div>
-            </fieldset>
-            <fieldset>
-                <h2 className="tagsTitle"><b>Choose Tags: </b></h2>
-                <div className="formGroup">
-                    {
-                        tags.map((tag) => {
-                            return <>
-                                <label htmlFor="addTags" className="tagLabel">{tag.label}</label>
-                                <input
-                                    type="checkbox"
-                                    className="addTags"
-                                    value={false}
-                                    onChange={(evt) =>{
-                                        if (evt.target.checked === true){
-                                            const copy = { ...postTag }
-                                            copy.tag_id = tag.id
-                                            updatePostTag(copy)
-                                        }
-                                    }}
-                                />
-                            </>
-                        })
-                    }
-                </div>
-            </fieldset>
-            <button
-                onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}
-                className="submit">
-                <b>Submit Post</b>
-            </button>
+                    </div>
+                </fieldset>
+                <button
+                    onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}
+                    className="submit">
+                    <b>Submit Post</b>
+                </button>
             </div>
         </form>
     )
