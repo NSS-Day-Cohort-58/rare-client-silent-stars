@@ -10,13 +10,30 @@ export const PostEdits = () => {
         content: "",
         publication_date: "",
         approved: ""
-
-
     })
+
+    const [postTag, updatePostTag] = useState({
+        post_id: 0,
+        tag_id: 0
+    })
+    const [tags, setTags] = useState([])
     const navigate = useNavigate()
     const { postId } = useParams()
     const [category, updateCategory] = useState([])
+    const [chosenTags, setChosenTags] = useState(new Set())
 
+    const getTags = () => {
+        return fetch(`http://localhost:8088/tags`)
+            .then(res => res.json())
+    }
+
+    useEffect(() => {
+        getTags()
+            .then((tagsArray) => {
+                setTags(tagsArray)
+            })
+    }, []
+    )
 
     useEffect(() => {
         fetch(`http://localhost:8088/posts/${postId}`)
@@ -25,6 +42,7 @@ export const PostEdits = () => {
                 update(postObject)
             })
     }, [postId])
+
     useEffect(() => {
         fetch(`http://localhost:8088/categories`)
             .then(response => response.json())
@@ -32,6 +50,24 @@ export const PostEdits = () => {
                 updateCategory(postObject)
             })
     }, [])
+
+    const TagPost = (parsedResponse) => {
+        chosenTags.forEach(tag => {
+            const TagToAPI = {
+                post_id: parsedResponse.id,
+                tag_id: tag
+            }
+            fetch(`http://localhost:8088/postTags`, {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json"
+                },
+                body: JSON.stringify(TagToAPI)
+            })
+                .then(response => response.json())
+        }
+        )
+    }
 
     const handleSaveButtonClick = (event) => {
         event.preventDefault()
@@ -44,6 +80,7 @@ export const PostEdits = () => {
             publication_date: post.publication_date,
             approved: parseInt(post.approved)
         }
+
         return fetch(`http://localhost:8088/posts/${postId}`, {
             method: "PUT",
             headers: {
@@ -51,7 +88,9 @@ export const PostEdits = () => {
             },
             body: JSON.stringify(postToSendToAPI)
         })
-
+            .then(
+                TagPost(postId)
+            )
             .then(() => {
                 navigate(`/posts/${postId}`)
             })
@@ -132,6 +171,36 @@ export const PostEdits = () => {
                     </select>
                 </div>
             </fieldset>
+            <fieldset>
+                    <h2 className="tagsTitle"><b>Choose Tags: </b></h2>
+                    <div className="formGroup">
+                        {
+                            tags.map((tag) => {
+                                return <>
+                                    <label htmlFor="addTags" className="tagLabel">{tag.label}</label>
+                                    <input
+                                        type="checkbox"
+                                        className="addTags"
+                                        value={false}
+                                        onChange={(evt) => {
+
+                                            const copy = new Set(chosenTags)
+                                            if (copy.has(tag.id)) {
+                                                copy.delete(tag.id)
+                                            }
+                                            else {
+                                                copy.add(tag.id)
+                                            }
+
+                                            setChosenTags(copy)
+
+                                        }}
+                                    />
+                                </>
+                            })
+                        }
+                    </div>
+                </fieldset>
             <Button
                 variant="outline-warning"
                 onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}
