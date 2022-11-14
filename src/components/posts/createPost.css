@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;1,200;1,300;1,400;1,500&display=swap");
+
+.postForm__title{
+    font-size: x-large;
+    font-weight: bolder;
+    text-align: center;
+}
+.postForm{
+    font-family: "Nunito", sans-serif;
+    display: block;
+    max-width: 50%;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    border-radius: 10px;
+    margin-bottom: 24px;
+    border: 2px solid black;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem 3rem 2rem 2rem;
+    justify-content: center;
+}
+.wholePostForm{
+    padding: 2rem 3rem 2rem 2rem;
+}
+.formSections{
+    padding: 1rem 1rem 1rem 1rem;
+}
+.tagLabel{
+    padding: 0rem 0.25rem 1rem 0.5rem;
+}
+#name{
+    padding: 0rem 0.5rem 1rem 0.5rem;
+}
+.postTitle{
+    padding: 0rem 10rem 0rem 10rem;
+    text-align: center;
+}
+.postImage{
+    padding: 0rem 10rem 0rem 10rem;
+    text-align: center;
+}
+.postContent{
+    padding: 0rem 10rem 0rem 10rem;
+    text-align: center;
+}

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import "./createPost.css"
 
 
 export const PostForm = () => {
@@ -119,8 +120,8 @@ export const PostForm = () => {
             <h2 className="postForm__title"><u>Create A Post</u></h2>
             <div className="wholePostForm">
                 <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="title"><b>Title:</b></label>
+                    <div className="formSections">
+                        <label htmlFor="title"><b id="name">Title:</b></label>
                         <input
                             required autoFocus
                             type="text"
@@ -138,8 +139,8 @@ export const PostForm = () => {
                     </div>
                 </fieldset>
                 <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="image"><b>Image:</b></label>
+                    <div className="formSections">
+                        <label htmlFor="image"><b id="name">Image:</b></label>
                         <input
                             required autoFocus
                             type="text"
@@ -157,8 +158,8 @@ export const PostForm = () => {
                     </div>
                 </fieldset>
                 <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="content"><b>Content:</b></label>
+                    <div className="formSections">
+                        <label htmlFor="content"><b id="name">Content:</b></label>
                         <input
                             required autoFocus
                             type="textarea"
@@ -176,8 +177,8 @@ export const PostForm = () => {
                     </div>
                 </fieldset>
                 <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="category"><b>Category:  </b></label>
+                    <div className="formSections">
+                        <label htmlFor="category"><b id="name">Category:  </b></label>
                         <select className="dropDown"
                             onChange={(evt) => {
                                 setCategoryId(parseInt(evt.target.value))
@@ -193,8 +194,8 @@ export const PostForm = () => {
                     </div>
                 </fieldset>
                 <fieldset>
+                    <div className="formSections">
                     <h2 className="tagsTitle"><b>Choose Tags: </b></h2>
-                    <div className="formGroup">
                         {
                             tags.map((tag) => {
                                 return <>

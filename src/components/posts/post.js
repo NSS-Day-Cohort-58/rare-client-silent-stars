@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Alert, Button } from "react-bootstrap"
 import { Link, useLocation, useNavigate } from "react-router-dom"
+import "./post.css"
 
 export const Post = ({ AuthorFirstName, category, title, publication_date, AuthorLastName, id }) => {
     const location = useLocation()
@@ -45,9 +46,9 @@ export const Post = ({ AuthorFirstName, category, title, publication_date, Autho
     return <>
 
         <section className="post">
-            <Link to={`/posts/${id}`} >{title}</Link>
-            <div>Author: {AuthorFirstName} {AuthorLastName}</div>
-            <div>{category}</div>
+            <Link to={`/posts/${id}`} ><b>{title}</b></Link>
+            <div><u>Author:</u> {AuthorFirstName} {AuthorLastName}</div>
+            <div><u>Category:</u> {category}</div>
             <Button size="sm" variant="info" onClick={() => navigate(`/posts/${id}/add-comment`)} >Add Comment</Button>
             {
                 location.pathname === "/my-posts"
