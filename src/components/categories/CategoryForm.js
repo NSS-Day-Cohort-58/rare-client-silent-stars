@@ -8,7 +8,7 @@ import { getAllCategories, createCategory } from "../../managers/categoriesManag
 export const CategoryForm = () => {
     const navigate = useNavigate();
     const [categories, setCatagories] = useState([])
-    const [category, update] = useState({
+    const [addCategory, update] = useState({
         label: "",
     })
 
@@ -17,8 +17,8 @@ export const CategoryForm = () => {
     }, [])
 
 
-    const newCategory = (e) => {
-        const copy = { ...category }
+    const newCategory = (evt) => {
+        const copy = { ...addCategory }
         copy[evt.target.id] = evt.target.value
         update(copy)
         }
@@ -45,7 +45,15 @@ export const CategoryForm = () => {
                                 Create Your Own Category!
                             </Form.Label>
                             <Form.Control type="text" placeholder="Create Category Label" onChange={ newCategory } />
-                            <Button variant="dark" type="submit" className="submit" onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}>Submit</Button>
+                            <Button variant="dark" type="submit" className="submit" onClick={evt => {
+                                    evt.preventDefault()
+                                    const category = {
+                                        label: addCategory.label
+                                    }
+                                    createCategory(category)
+                                        .then(() => navigate("/categories"))
+                                }
+                            }>Submit</Button>
                         </Form.Group>
                     </Col>
                 </Form>
