@@ -7,7 +7,6 @@ import "./Categories.css"
 export const CategoryForm = () => {
     const [categories, setCatagories] = useState([])
     const [category, update] = useState({
-        id: (0),
         label: "",
     })
 
