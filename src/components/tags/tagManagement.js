@@ -35,6 +35,6 @@ export const Tags = ({ searchTermState }) => {
 
                 )
             }
-              </article>
+            </article>
     </>
 }

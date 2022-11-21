@@ -2,47 +2,28 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Container, Col, Form } from "react-bootstrap";
 import "./Categories.css"
+import { getAllCategories, createCategory } from "../../managers/categoriesManager";
 
 
 export const CategoryForm = () => {
+    const navigate = useNavigate();
     const [categories, setCatagories] = useState([])
-    const [category, update] = useState({
-        id: (0),
+    const [addCategory, update] = useState({
         label: "",
     })
 
     useEffect(() => {
-        fetch(`http://localhost:8088/categories`)
-            .then((response) => response.json())
-            .then((categoryArray) => {
-                setCatagories(categoryArray);
-            });
-    }, []);
-
-    const navigate = useNavigate();
+        getAllCategories().then(setCatagories)
+    }, [])
 
 
-    const handleSaveButtonClick = (e) => {
-        e.preventDefault();
-        //create API object
-        const categoryToSendToAPI = {
-            id: category.id,
-            label: category.label,
-        };
+    const newCategory = (evt) => {
+        const copy = { ...addCategory }
+        copy[evt.target.id] = evt.target.value
+        update(copy)
+        }
 
 
-        return fetch(`http://localhost:8088/categories`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(categoryToSendToAPI),
-        })
-            .then((response) => response.json())
-            .then(() => {
-                navigate("/create-category");
-            });
-    };
 
     return (
         <>
@@ -63,12 +44,16 @@ export const CategoryForm = () => {
                             <Form.Label>
                                 Create Your Own Category!
                             </Form.Label>
-                            <Form.Control type="text" placeholder="Create Category Label" onChange={(evt)=>{
-                                const copy = { ...category };
-                                copy.label = evt.target.value;
-                                update(copy)
-                            }}  />
-                            <Button variant="dark" type="submit" className="submit" onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}>Submit</Button>
+                            <Form.Control type="text" placeholder="Create Category Label" onChange={ newCategory } />
+                            <Button variant="dark" type="submit" className="submit" onClick={evt => {
+                                    evt.preventDefault()
+                                    const category = {
+                                        label: addCategory.label
+                                    }
+                                    createCategory(category)
+                                        .then(() => navigate("/categories"))
+                                }
+                            }>Submit</Button>
                         </Form.Group>
                     </Col>
                 </Form>
