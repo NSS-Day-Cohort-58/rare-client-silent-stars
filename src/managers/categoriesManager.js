@@ -19,3 +19,4 @@ export const createCategory = (category) => {
         body: JSON.stringify(category)
     })
         .then(response => response.json())
+}
