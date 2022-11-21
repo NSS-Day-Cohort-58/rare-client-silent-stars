@@ -1,33 +1,28 @@
 import { useEffect, useState } from "react"
-
-
 import { Post } from "./post";
+import { getPosts, deletePost } from "../../managers/postManager";
+
+
 export const MyPosts = ({ searchTermState }) => {
 
 
     const [posts, setPosts] = useState([])
     const [filteredPosts, setFilteredPosts] = useState([])
 
-    const localFireHawksUser = localStorage.getItem("auth_token")
-    const FireHawksUserObject = JSON.parse(localFireHawksUser)
+    const localRareUserObject = localStorage.getItem("rareUser")
+    const RareUserObject = JSON.parse(localRareUserObject)
 
 
 
 
     useEffect(
         () => {
+            getPosts().then(data => setPosts(data))
+        },[])
 
-            fetch(`http://localhost:8088/posts`)
-                .then(response => response.json())
-                .then((postsArray) => {
-                    setPosts(postsArray)
-                })
-        },
-        []
-    )
     useEffect(
         () => {
-            const myPosts = posts.filter(post => post.user_id === FireHawksUserObject)
+            const myPosts = posts.filter(post => post.user_id === RareUserObject)
 
             setFilteredPosts(myPosts)
         },
@@ -59,12 +54,16 @@ export const MyPosts = ({ searchTermState }) => {
                         AuthorFirstName={post.user.first_name}
                         AuthorLastName={post.user.last_name}
                         key={`post--${post.id}`}
-
-
-                    />
-
-                )
-            }
+                        />
+                        )
+                    }
+                    <button onClick={() => {
+                        const postDelete = {
+                            id: post.id
+                        }
+                        deletePost(postDelete)
+                        .then(() => navigate("/posts"))
+                    }}>Delete</button>
 
 
         </article>
