@@ -8,14 +8,6 @@ export const CategoryList = () => {
     const [categories, setCategory] = useState([]);
     
 
-    useEffect(() => {
-      fetch(`http://localhost:8088/categories`)
-        .then((response) => response.json())
-        .then((categoryArray) => {
-          setCategory(categoryArray);
-        });
-    }, []);
-
     return (
         <>
           <article className="categories">
