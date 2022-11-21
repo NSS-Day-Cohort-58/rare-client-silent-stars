@@ -1,7 +1,7 @@
 export const getPosts = () => {
     return fetch("http://localhost:8000/posts", {
         headers:{
-            "Authorization": `Token ${localStorage.getItem("lu_token")}`
+            "Authorization": `Token ${localStorage.getItem("rareUser")}`
         }
     })
         .then(response => response.json())
@@ -13,7 +13,7 @@ export const getPostById = (id) => {
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "Authorization": `Token ${localStorage.getItem("lu_token")}`
+            "Authorization": `Token ${localStorage.getItem("rareUser")}`
         },
     })
         .then(response => response.json())
