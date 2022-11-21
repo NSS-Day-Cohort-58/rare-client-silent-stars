@@ -3,10 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import "./Categories.css"
+import { getAllCategories } from "../../managers/categoriesManager";
 
 export const CategoryList = () => {
     const [categories, setCategory] = useState([]);
     
+    useEffect(() => {
+      getAllCategories().then(data => setCategory(data))
+    }, []
+    )
 
     return (
         <>
