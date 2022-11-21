@@ -1,5 +1,5 @@
 export const getAllCategories = () => {
-    return fetch(`http://localhost:8088/categories`, {
+    return fetch(`http://localhost:8000/categories`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("rareUser")}`
         }
