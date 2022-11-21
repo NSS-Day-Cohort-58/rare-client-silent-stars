@@ -1,4 +1,3 @@
-import { Category } from "./Category";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
