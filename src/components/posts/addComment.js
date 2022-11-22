@@ -6,8 +6,7 @@ export const AddComments = () => {
     const navigate = useNavigate()
     const [comment, setComment] = useState({})
     const { postId } = useParams()
-    const localFireHawksUser = localStorage.getItem("auth_token")
-    const FireHawksUserObject = JSON.parse(localFireHawksUser)
+
     const handleSaveButtonClick = (e) => {
         e.preventDefault();
         //create API object
