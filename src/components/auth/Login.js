@@ -19,7 +19,7 @@ export const Login = ({ setToken }) => {
     loginUser(user).then(res => {
       if ("valid" in res && res.valid) {
         setToken(res.token)
-        navigate("/")
+        navigate("/my-posts")
       }
       else {
         setisUnsuccessful(true)

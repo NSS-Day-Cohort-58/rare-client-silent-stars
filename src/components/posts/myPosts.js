@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Post } from "./post";
 import { getPosts, deletePost } from "../../managers/postManager";
+import { useNavigate } from "react-router-dom";
 
 
 export const MyPosts = ({ searchTermState }) => {
@@ -8,7 +9,7 @@ export const MyPosts = ({ searchTermState }) => {
 
     const [posts, setPosts] = useState([])
     const [filteredPosts, setFilteredPosts] = useState([])
-
+    const navigate = useNavigate()
     const localRareUserObject = localStorage.getItem("rareUser")
     const RareUserObject = JSON.parse(localRareUserObject)
 
@@ -38,12 +39,12 @@ export const MyPosts = ({ searchTermState }) => {
 
         <h2>My Posts</h2>
 
-
         <article>
             {
-
                 filteredPosts.map(
-                    (post) => <Post
+                    (post) => 
+                        <>
+                        <Post
                         id={post.id}
                         userId={post.userId}
                         category={post.category.label}
@@ -55,17 +56,10 @@ export const MyPosts = ({ searchTermState }) => {
                         AuthorLastName={post.user.last_name}
                         key={`post--${post.id}`}
                         />
+                        <button className="button" onClick={() => {deletePost(post.id).then(() => navigate("/posts"))}}> Delete</button>
+                        </>
                         )
                     }
-                    <button onClick={() => {
-                        const postDelete = {
-                            id: post.id
-                        }
-                        deletePost(postDelete)
-                        .then(() => navigate("/posts"))
-                    }}>Delete</button>
-
-
         </article>
     </>
 }
