@@ -23,7 +23,7 @@ export const PostEdits = () => {
     const [chosenTags, setChosenTags] = useState(new Set())
 
     const getTags = () => {
-        return fetch(`http://localhost:8088/tags`)
+        return fetch(`http://localhost:8000/tags`)
             .then(res => res.json())
     }
 
@@ -36,7 +36,7 @@ export const PostEdits = () => {
     )
 
     useEffect(() => {
-        fetch(`http://localhost:8088/posts/${postId}`)
+        fetch(`http://localhost:8000/posts/${postId}`)
             .then(response => response.json())
             .then((postObject) => {
                 update(postObject)
@@ -44,7 +44,7 @@ export const PostEdits = () => {
     }, [postId])
 
     useEffect(() => {
-        fetch(`http://localhost:8088/categories`)
+        fetch(`http://localhost:8000/categories`)
             .then(response => response.json())
             .then((postObject) => {
                 updateCategory(postObject)
@@ -57,7 +57,7 @@ export const PostEdits = () => {
                 post_id: parsedResponse.id,
                 tag_id: tag
             }
-            fetch(`http://localhost:8088/postTags`, {
+            fetch(`http://localhost:8000/postTags`, {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json"
@@ -81,7 +81,7 @@ export const PostEdits = () => {
             approved: parseInt(post.approved)
         }
 
-        return fetch(`http://localhost:8088/posts/${postId}`, {
+        return fetch(`http://localhost:8000/posts/${postId}`, {
             method: "PUT",
             headers: {
                 "Content-type": "application/json"

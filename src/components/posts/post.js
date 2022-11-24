@@ -31,7 +31,7 @@ export const Post = ({ AuthorFirstName, category, title, publication_date, Autho
             variant="danger"
             onClick={
                 () => {
-                    return fetch(`http://localhost:8088/posts/${id}`, {
+                    return fetch(`http://localhost:8000/posts/${id}`, {
                         method: "DELETE",
                     })
                         .then(() => {

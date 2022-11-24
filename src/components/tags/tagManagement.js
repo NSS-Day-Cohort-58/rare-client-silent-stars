@@ -10,7 +10,7 @@ export const Tags = ({ searchTermState }) => {
     useEffect(
         () => {
 
-            fetch(`http://localhost:8088/tags`)
+            fetch(`http://localhost:8000/tags`)
                 .then(response => response.json())
                 .then((tagsArray) => {
                     setTags(tagsArray)

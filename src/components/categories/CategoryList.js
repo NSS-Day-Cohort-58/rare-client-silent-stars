@@ -19,8 +19,7 @@ export const CategoryList = () => {
             <h2 className="CategoryList__details">Categories:</h2>
             {
                 categories.map(category => {
-                  return <>
-                  
+                  return <div key={`category--${category.id}`} className="category">
                   <ul>{category.label}</ul>
                   
                   <div><Button variant="dark" className="category_edit">Edit</Button></div>
@@ -28,7 +27,8 @@ export const CategoryList = () => {
                   <div>
                     <Button variant="dark" className="back__button">Delete</Button>
                   </div>
-                  </>
+                  </div>
+                  
                 })
             }
           </article>

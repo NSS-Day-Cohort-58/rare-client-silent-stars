@@ -1,29 +1,30 @@
 export const getPosts = () => {
-    return fetch("http://localhost:8000/posts", {
-        headers:{
-            "Authorization": `Token ${localStorage.getItem("rare_token")}`
+    return fetch('http://localhost:8000/posts', {
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("auth_token")}`
         }
     })
         .then(response => response.json())
 }
 
+
 export const getPostById = (id) => {
-    return fetch (`http://localhost:8000/posts/${id}`, {
-        method: "GET",
+    return fetch(`http://localhost:8000/posts/${id}`, {
         headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json",
-            "Authorization": `Token ${localStorage.getItem("rare_token")}`
-        },
+            "Authorization": `Token ${localStorage.getItem("auth_token")}`
+        }
     })
         .then(response => response.json())
 }
 
-export const deletePost = (post) => {
-    return fetch (`http://localhost:8000/posts/${post.id}`,{
+
+export const deletePost = (postId) => {
+    return fetch(`http://localhost:8000/posts/${postId}`, {
         method: "DELETE",
         headers: {
-            "Authorization": `Token ${localStorage.getItem("rare_token")}`
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": `Token ${localStorage.getItem("auth_token")}`
         }
     })
 }

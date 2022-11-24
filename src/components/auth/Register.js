@@ -18,21 +18,20 @@ export const Register = ({setToken}) => {
     
     if (password.current.value === verifyPassword.current.value) {
       const newUser = {
-        "username": username.current.value,
-        "first_name": firstName.current.value,
-        "last_name": lastName.current.value,
-        "email": email.current.value,
-        "password": password.current.value,
-        "is_staff": true,
-        "bio": "Everyone is Cool",
-        "profile_image": "",
+        username: username.current.value,
+        first_name: firstName.current.value,
+        last_name: lastName.current.value,
+        email: email.current.value,
+        password: password.current.value,
+        is_staff: true,
+        bio: "Everyone is Cool",
+        profile_image: "",
       }
 
       registerUser(newUser)
         .then(res => {
-          if ("token" in res) {
-            localStorage.setItem("rare_token", res.token)
-            // setToken(res.token)
+          if ("token" in res && res.token) {
+            setToken(res.token)
             navigate("/")
           }
         })
