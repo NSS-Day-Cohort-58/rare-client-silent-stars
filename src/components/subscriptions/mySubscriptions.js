@@ -18,7 +18,7 @@ export const MySubscriptions = () => {
     useEffect(
         () => {
 
-            fetch(`http://localhost:8088/subscriptions`)
+            fetch(`http://localhost:8000/subscriptions`)
                 .then(response => response.json())
                 .then((SubscriptionsArray) => {
                     setSubscriptions(SubscriptionsArray)
@@ -29,7 +29,7 @@ export const MySubscriptions = () => {
     useEffect(
         () => {
 
-            fetch(`http://localhost:8088/posts`)
+            fetch(`http://localhost:8000/posts`)
                 .then(response => response.json())
                 .then((postsArray) => {
                     setPosts(postsArray)

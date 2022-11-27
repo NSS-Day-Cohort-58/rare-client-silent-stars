@@ -8,7 +8,7 @@ export const Users = () => {
     useEffect(
         () => {
 
-            fetch(`http://localhost:8088/users`)
+            fetch(`http://localhost:8000/users`)
                 .then(response => response.json())
                 .then((postsArray) => {
                     setUsers(postsArray)

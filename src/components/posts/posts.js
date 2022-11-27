@@ -37,7 +37,7 @@ export const Posts = ({ searchTermState }) => {
     useEffect(
         () => {
 
-            fetch(`http://localhost:8088/posts`)
+            fetch(`http://localhost:8000/posts`)
                 .then(response => response.json())
                 .then((postsArray) => {
                     postsArray.sort(function (a, b) {
@@ -51,7 +51,7 @@ export const Posts = ({ searchTermState }) => {
     useEffect(
         () => {
 
-            fetch(`http://localhost:8088/posts`)
+            fetch(`http://localhost:8000/posts`)
                 .then(response => response.json())
                 .then((postsArray) => {
                     setPosts(postsArray)
@@ -63,7 +63,7 @@ export const Posts = ({ searchTermState }) => {
     useEffect(
         () => {
 
-            fetch(`http://localhost:8088/categories`)
+            fetch(`http://localhost:8000/categories`)
                 .then(response => response.json())
                 .then((categoryArray) => {
                     setCategories(categoryArray)
@@ -75,7 +75,7 @@ export const Posts = ({ searchTermState }) => {
     useEffect(
         () => {
 
-            fetch(`http://localhost:8088/users`)
+            fetch(`http://localhost:8000/users`)
                 .then(response => response.json())
                 .then((userArray) => {
                     setUsers(userArray)
@@ -86,7 +86,7 @@ export const Posts = ({ searchTermState }) => {
     useEffect(
         () => {
 
-            fetch(`http://localhost:8088/postTags`)
+            fetch(`http://localhost:8000/postTags`)
                 .then(response => response.json())
                 .then((postTagsArray) => {
                     setPostTags(postTagsArray)

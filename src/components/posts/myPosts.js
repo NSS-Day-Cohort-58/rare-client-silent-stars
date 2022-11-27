@@ -10,7 +10,7 @@ export const MyPosts = ({ searchTermState }) => {
     const [posts, setPosts] = useState([])
     const [filteredPosts, setFilteredPosts] = useState([])
     const navigate = useNavigate()
-    const localRareUserObject = localStorage.getItem("rareUser")
+    const localRareUserObject = localStorage.getItem("rare_token")
     const RareUserObject = JSON.parse(localRareUserObject)
 
 
