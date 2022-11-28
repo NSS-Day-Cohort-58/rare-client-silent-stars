@@ -1,35 +1,24 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Button, Col, Container, Form } from "react-bootstrap"
 import { useNavigate, useParams } from "react-router-dom"
+import { createComment } from "../../managers/commentManager"
 
 export const AddComments = () => {
     const navigate = useNavigate()
-    const [comment, setComment] = useState({})
     const { postId } = useParams()
-    const localFireHawksUser = localStorage.getItem("auth_token")
-    const FireHawksUserObject = JSON.parse(localFireHawksUser)
-    const handleSaveButtonClick = (e) => {
-        e.preventDefault();
-        //create API object
-        const CommentToSendToAPI = {
 
+    const [comment, setComment] = useState({
             post_id: postId,
-            author_id: FireHawksUserObject,
+            author_id: RareUserObject,
             content: comment.content
-        };
-
-        return fetch(`http://localhost:8088/comments`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(CommentToSendToAPI),
         })
-            .then((response) => response.json())
-            .then(() => {
-                navigate(`/posts/${postId}/comment`);
-            });
-    };
+
+        const newComment = (evt) => {
+            const copy = { ...comment }
+            copy[evt.target.id] = evt.target.value
+            setComment(copy)
+        }
+
     return (
         <>
 
@@ -40,13 +29,22 @@ export const AddComments = () => {
                             <Form.Label>
                                 Create Your Own Comment!
                             </Form.Label>
-                            <Form.Control type="text" placeholder="Create comment" onChange={(evt) => {
-                                const copy = { ...comment };
-                                copy.content = evt.target.value;
-                                setComment(copy)
-                            }} />
+                            <Form.Control type="text" placeholder="Create comment" id="comment" />
                             <Button variant="dark" type="submit"
-                                onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}>Submit</Button>
+                                onClick={evt => {
+                                    // Prevent form from being submitted
+                                    evt.preventDefault()
+                
+                                    const event = {
+                                        post_id: postId,
+                                        author_id: RareUserObject,
+                                        content: comment.content
+                                    }
+                
+                                    createComment(event)
+                                        .then(() => navigate("/posts/:postId/comment"))
+                                }}
+                                className="btn btn-primary">Submit</Button>
                         </Form.Group>
                     </Col>
                 </Form>
