@@ -10,16 +10,14 @@ export const Login = ({ setToken }) => {
 
   const handleLogin = (e) => {
     e.preventDefault()
-
     const user = {
       username: username.current.value,
       password: password.current.value
     }
-
     loginUser(user).then(res => {
-      if ("valid" in res && res.valid) {
+      if ("valid" in res && res.valid && "token" in res) {
         setToken(res.token)
-        navigate("/my-posts")
+         navigate("/my-posts")
       }
       else {
         setisUnsuccessful(true)
