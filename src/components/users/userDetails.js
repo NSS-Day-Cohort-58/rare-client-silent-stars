@@ -13,7 +13,7 @@ export const UserDetails = () => {
     useEffect(
         () => {
 
-            fetch(`http://localhost:8088/users/${userId}`)
+            fetch(`http://localhost:8000/users/${userId}`)
                 .then(response => response.json())
                 .then((usersArray) => {
                     setUsers(usersArray)
@@ -25,7 +25,7 @@ export const UserDetails = () => {
     useEffect(
         () => {
 
-            fetch(`http://localhost:8088/subscriptions`)
+            fetch(`http://localhost:8000/subscriptions`)
                 .then(response => response.json())
                 .then((subsArray) => {
                     setSubscriptions(subsArray)
@@ -49,7 +49,7 @@ export const UserDetails = () => {
             variant="danger"
             onClick={
                 () => {
-                    return fetch(`http://localhost:8088/subscriptions/${subs.id}`, {
+                    return fetch(`http://localhost:8000/subscriptions/${subs.id}`, {
                         method: "DELETE",
                     })
                     .then(() => {(window.location.reload(false))})
@@ -60,7 +60,7 @@ export const UserDetails = () => {
     }
 
         const createSubscription = (subscription) => {
-            return fetch(`http://localhost:8088/subscriptions`, {
+            return fetch(`http://localhost:8000/subscriptions`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

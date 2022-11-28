@@ -1,11 +1,19 @@
 export const getAllTags = () => {
     return fetch(`http://localhost:8000/tags`, {
         headers: {
-            "Authorization": `Token ${localStorage.getItem("rare_token")}`
+            "Authorization": `Token ${localStorage.getItem("auth_token")}`
         }
     })
         .then(response => response.json())
+}
 
+export const getTagById = (id) => {
+    return fetch(`http://localhost:8000/tags/${id}`, {
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("auth_token")}`
+        }
+    })
+        .then(response => response.json())
 }
 
 export const createTag = (tag) => {
@@ -13,18 +21,19 @@ export const createTag = (tag) => {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Accept": "application/json",
-            "Authorization": `Token ${localStorage.getItem("rare_token")}`
+            "Authorization": `Token ${localStorage.getItem("auth_token")}`
         },
         body: JSON.stringify(tag)
     })
-        .then(response => response.json())
 }
 
-
-export const deleteTag = (tag) => {
-    return fetch(`http://localhost:8000/tags/${tag.id}`, {
+export const deleteTag = (id) => {
+    return fetch(`http://localhost:8000/tags/${id}`, {
         method: "DELETE",
-        headers: { "Authorization": `Token ${localStorage.getItem("rare_token")}` },
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Authorization": `Token ${localStorage.getItem("auth_token")}`
+        }
     })
 }

@@ -32,15 +32,15 @@ export const PostForm = () => {
     const fireHawksUserObject = JSON.parse(localFireHawksUser)
 
     const getPosts = () => {
-        return fetch(`http://localhost:8088/posts`)
+        return fetch(`http://localhost:8000/posts`)
             .then(res => res.json())
     }
     const getCategories = () => {
-        return fetch(`http://localhost:8088/categories`)
+        return fetch(`http://localhost:8000/categories`)
             .then(res => res.json())
     }
     const getTags = () => {
-        return fetch(`http://localhost:8088/tags`)
+        return fetch(`http://localhost:8000/tags`)
             .then(res => res.json())
     }
 
@@ -73,7 +73,7 @@ export const PostForm = () => {
                 post_id: parsedResponse.id,
                 tag_id: tag
             }
-            fetch(`http://localhost:8088/postTags`, {
+            fetch(`http://localhost:8000/postTags`, {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json"
@@ -97,7 +97,7 @@ export const PostForm = () => {
             approved: false
         }
 
-        fetch(`http://localhost:8088/posts`, {
+        fetch(`http://localhost:8000/posts`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json"

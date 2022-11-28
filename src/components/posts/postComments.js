@@ -14,7 +14,7 @@ export const PostComments = () => {
     useEffect(
         () => {
 
-            fetch(`http://localhost:8088/comments?post_id=${postId}`)
+            fetch(`http://localhost:8000/comments?post_id=${postId}`)
                 .then(response => response.json())
                 .then((commentsArray) => {
                     setComments(commentsArray)
@@ -25,7 +25,7 @@ export const PostComments = () => {
     useEffect(
         () => {
 
-            fetch(`http://localhost:8088/posts/${postId}`)
+            fetch(`http://localhost:8000/posts/${postId}`)
                 .then(response => response.json())
                 .then((postsArray) => {
                     setPosts(postsArray)
@@ -40,7 +40,7 @@ export const PostComments = () => {
             variant="danger"
             onClick={
                 () => {
-                    return fetch(`http://localhost:8088/comments/${id}`, {
+                    return fetch(`http://localhost:8000/comments/${id}`, {
                         method: "DELETE",
                     })
                         .then(() => {(window.location.reload(false))})

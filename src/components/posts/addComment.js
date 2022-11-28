@@ -11,6 +11,7 @@ export const AddComments = () => {
             post_id: postId,
             author_id: RareUserObject,
             content: comment.content
+
         })
 
         const newComment = (evt) => {
